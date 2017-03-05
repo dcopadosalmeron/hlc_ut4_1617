@@ -53,7 +53,52 @@ class PartidoController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
-            return $this->redirectToRoute('resultados');
+            return $this->redirectToRoute('partido_listar');
+        }
+
+        return $this->render('partido/form.html.twig',
+            [
+                'form' => $form->createView()
+            ]);
+    }
+
+    /**
+     * @Route("/partido/listar", name="partido_listar")
+     * @Security("has_role('ROLE_ARBITRO')")
+     */
+    public function listadoAction()
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $partidos = $em->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Partido', 'p')
+            ->orderBy('p.fechaCelebracion')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('partido/listado_arbitro.html.twig', [
+            'partidos' => $partidos
+        ]);
+    }
+
+    /**
+     * @Route("/partido/modificar/{id}", name="partido_form")
+     * @Security("has_role('ROLE_ARBITRO')")
+     */
+    public function formAction(Request $request, Partido $partido)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(PartidoType::class, $partido);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            return $this->redirectToRoute('partido_listar');
         }
 
         return $this->render('partido/form.html.twig',

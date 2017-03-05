@@ -21,6 +21,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {# ¡IMPORTANTE! usar href="{{ path('...' }}" en lugar de poner las rutas directamente #}
                     {% if is_granted('ROLE_COMENTARISTA') %}<li><a href="{{ path('equipo_listar') }}"><i class="fa fa-users"></i> Equipos</a></li>{% endif %}
+                    {% if is_granted('ROLE_ARBITRO') %}<li><a href="{{ path('partido_listar') }}"><i class="fa fa-eye"></i> Partidos</a></li>{% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('usuario_salir') }}"><i class="fa fa-sign-out"></i> Salir</a></li>
                     {% else %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Partidos - Torneo7' %}
+
+{% block content %}
+    <h2 class="well">Partidos del torneo</h2>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-2">Fecha</th>
+            <th class="col-md-3">Equipo local</th>
+            <th class="col-md-1"></th>
+            <th class="col-md-1"></th>
+            <th class="col-md-3">Equipo visitante</th>
+            <th class="col-md-2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for partido in partidos %}
+            <tr>
+                <td>{{ partido.fechaCelebracion | date('d/m/Y') }}</td>
+                <td {% if partido.marcadorLocal > partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
+                <td>{{ partido.marcadorLocal }}</td>
+                <td>{{ partido.marcadorVisitante }}</td>
+                <td {% if partido.marcadorLocal < partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
+                <td><a href="{{ path('partido_form', {'id': partido.id}) }}" class="btn btn-primary btn-block btn-xs"><i class="fa fa-pencil"></i> Modificar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('partido_nuevo') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo partido</a>
+{% endblock %}
