@@ -33,18 +33,21 @@ class PartidoController extends Controller
     }
 
     /**
+     * @Route("/partido/modificar/{id}", name="partido_form")
      * @Route("/partido/nuevo", name="partido_nuevo")
      * @Security("has_role('ROLE_ARBITRO')")
      */
-    public function nuevoAction(Request $request)
+    public function nuevoAction(Request $request, Partido $partido = null)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $partido = new Partido();
-        $em->persist($partido);
+        if (null === $partido) {
+            $partido = new Partido();
+            $em->persist($partido);
 
-        // poner por defecto la fecha hoy
-        $partido->setFechaCelebracion(new \DateTime());
+            // poner por defecto la fecha hoy
+            $partido->setFechaCelebracion(new \DateTime());
+        }
 
         $form = $this->createForm(PartidoType::class, $partido);
 
@@ -56,10 +59,9 @@ class PartidoController extends Controller
             return $this->redirectToRoute('partido_listar');
         }
 
-        return $this->render('partido/form.html.twig',
-            [
-                'form' => $form->createView()
-            ]);
+        return $this->render('partido/form.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -81,29 +83,5 @@ class PartidoController extends Controller
         return $this->render('partido/listado_arbitro.html.twig', [
             'partidos' => $partidos
         ]);
-    }
-
-    /**
-     * @Route("/partido/modificar/{id}", name="partido_form")
-     * @Security("has_role('ROLE_ARBITRO')")
-     */
-    public function formAction(Request $request, Partido $partido)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(PartidoType::class, $partido);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
-
-            return $this->redirectToRoute('partido_listar');
-        }
-
-        return $this->render('partido/form.html.twig',
-            [
-                'form' => $form->createView()
-            ]);
     }
 }
