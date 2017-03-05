@@ -16,7 +16,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-main">
                 {% if app.user %}
-                    <p class="navbar-text">Conectado como {{ user.correoElectronico }}</p>
+                    <p class="navbar-text">Conectado como {{ app.user.correoElectronico }}</p>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     {# ¡IMPORTANTE! usar href="{{ path('...' }}" en lugar de poner las rutas directamente #}
