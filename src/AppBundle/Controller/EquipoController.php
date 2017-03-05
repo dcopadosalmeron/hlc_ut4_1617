@@ -5,14 +5,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Equipo;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class EquipoController extends Controller
 {
     /**
      * @Route("/equipos", name="equipo_listar")
+     * @Security("has_role('ROLE_COMENTARISTA')")
      */
-    public function indexAction()
+    public function listadoAction()
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
@@ -31,6 +33,7 @@ class EquipoController extends Controller
 
     /**
      * @Route("/equipo/plantilla/{equipo}", name="equipo_plantilla")
+     * @Security("has_role('ROLE_COMENTARISTA')")
      */
     public function plantillaAction(Equipo $equipo)
     {
