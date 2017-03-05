@@ -1,5 +1,4 @@
-Proyecto ejemplo de formularios en Symfony
-==========================================
+HLC - Examen práctico UT4 - Formularios y seguridad
+===================================================
 
-Este proyecto es la base sobre la que se trabajarán los formularios en aplicaciones Symfony 3.2.
-
+Este proyecto es el código inicial sobre el cual se trabajarán los apartados del enunciado.
