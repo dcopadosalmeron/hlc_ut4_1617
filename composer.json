@@ -1,5 +1,5 @@
 {
-    "name": "lrlopez/.checkout",
+    "name": "iesoretania-dic/hlc-ut4-1617",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -31,7 +31,8 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "symfony-scripts": [
@@ -58,7 +59,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": null
+        }
     }
 }
