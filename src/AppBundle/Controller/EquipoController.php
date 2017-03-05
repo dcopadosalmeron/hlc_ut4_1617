@@ -21,7 +21,9 @@ class EquipoController extends Controller
 
         $equipos = $em->createQueryBuilder()
             ->select('e')
+            ->addSelect('j')
             ->from('AppBundle:Equipo', 'e')
+            ->join('e.entrenador', 'j')
             ->orderBy('e.denominacion')
             ->getQuery()
             ->getResult();
