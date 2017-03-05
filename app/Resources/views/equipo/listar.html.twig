@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Equipos - Torneo7' %}
+
+{% block content %}
+    <h2 class="well">Listado de equipos participantes</h2>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-12">Equipo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for equipo in equipos %}
+            <tr>
+                <td><a href="{{ path('equipo_plantilla', {'equipo': equipo.id}) }}">{{ equipo }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

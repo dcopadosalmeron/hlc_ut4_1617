@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Equipos - Torneo7' %}
+
+{% block content %}
+    <h2 class="well">Plantilla del equipo {{ equipo }}</h2>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-10">Apellidos, nombre</th>
+            <th class="col-md-2">Edad</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for jugador in plantilla %}
+            <tr>
+                <td>{{ jugador }}</td>
+                <td>{{ jugador.edad }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('equipo_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver al listado de equipos</a>
+{% endblock %}
