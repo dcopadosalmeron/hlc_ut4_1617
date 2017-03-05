@@ -131,4 +131,10 @@ class Equipo
     {
         return $this->plantilla;
     }
+
+    public function __toString()
+    {
+        return $this->getDenominacion();
+    }
+
 }

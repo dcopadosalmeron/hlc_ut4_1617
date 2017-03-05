@@ -143,4 +143,10 @@ class Jugador
     {
         return $this->equipo;
     }
+
+    public function __toString()
+    {
+        return $this->getApellidos() . ', ' . $this->getNombre();
+    }
+
 }
