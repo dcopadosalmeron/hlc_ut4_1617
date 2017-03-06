@@ -55,8 +55,14 @@ class PartidoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-
-            return $this->redirectToRoute('partido_listar');
+            try {
+                $em->flush();
+                $this->addFlash('exito', 'Cambios guardados con éxito');
+                return $this->redirectToRoute('partido_listar');
+        }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se ha podido modificar el partido');
+            }
         }
 
         return $this->render('partido/form.html.twig', [
@@ -105,8 +111,14 @@ class PartidoController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $em->remove($partido);
-        $em->flush();
 
+        try {
+            $em->flush();
+            $this->addFlash('exito', 'Partido eliminado con éxito');
+        }
+        catch (\Exception $e) {
+            $this->addFlash('error', 'No se ha podido eliminar el partido');
+        }
         return $this->redirectToRoute('partido_listar');
     }
 }
