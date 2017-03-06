@@ -22,8 +22,13 @@
                 <td {% if partido.marcadorLocal > partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
                 <td>{{ partido.marcadorLocal }}</td>
                 <td>{{ partido.marcadorVisitante }}</td>
-                <td {% if partido.marcadorLocal < partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
-                <td><a href="{{ path('partido_form', {'id': partido.id}) }}" class="btn btn-primary btn-block btn-xs"><i class="fa fa-pencil"></i> Modificar</a></td>
+                <td {% if partido.marcadorLocal < partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoVisitante }}</td>
+                <td>
+                    <div class="btn-group btn-group-xs btn-group-justified">
+                        <a href="{{ path('partido_form', {'id': partido.id}) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Modificar</a>
+                        <a href="{{ path('partido_borrar', {'id': partido.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

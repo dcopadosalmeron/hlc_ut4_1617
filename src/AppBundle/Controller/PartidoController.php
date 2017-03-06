@@ -84,4 +84,29 @@ class PartidoController extends Controller
             'partidos' => $partidos
         ]);
     }
+
+    /**
+     * @Route("/partido/borrar/{id}", name="partido_borrar", methods={"GET"})
+     * @Security("has_role('ROLE_ARBITRO')")
+     */
+    public function confirmarBorrarAction(Partido $partido)
+    {
+        return $this->render('partido/confirmar_borrado.html.twig', [
+            'partido' => $partido
+        ]);
+    }
+
+    /**
+     * @Route("/partido/borrar/{id}", name="partido_borrar_confirmado", methods={"POST"})
+     * @Security("has_role('ROLE_ARBITRO')")
+     */
+    public function borrarAction(Partido $partido)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($partido);
+        $em->flush();
+
+        return $this->redirectToRoute('partido_listar');
+    }
 }

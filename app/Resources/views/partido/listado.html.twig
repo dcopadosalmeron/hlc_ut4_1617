@@ -21,7 +21,7 @@
                 <td {% if partido.marcadorLocal > partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
                 <td>{{ partido.marcadorLocal }}</td>
                 <td>{{ partido.marcadorVisitante }}</td>
-                <td {% if partido.marcadorLocal < partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoLocal }}</td>
+                <td {% if partido.marcadorLocal < partido.marcadorVisitante %}class="success"{% endif %}>{{ partido.equipoVisitante }}</td>
             </tr>
         {% endfor %}
         </tbody>
