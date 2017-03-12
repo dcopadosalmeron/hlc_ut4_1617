@@ -25,7 +25,8 @@ class PartidoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Partido::class
+            'data_class' => Partido::class,
+            'translation_domain' => false
         ]);
     }
 }
