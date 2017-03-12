@@ -14,7 +14,7 @@ class UsuarioController extends Controller
     {
         $helper = $this->get('security.authentication_utils');
 
-        return $this->render(':Usuario:entrar.html.twig',
+        return $this->render('usuario/entrar.html.twig',
             [
                 'last_username' => $helper->getLastUsername(),
                 'error'         => $helper->getLastAuthenticationError()
